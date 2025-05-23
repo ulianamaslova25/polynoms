@@ -1,4 +1,5 @@
 #include "polynomial.h"
+#include "Parser.h"
 #include <cmath> 
 #include <sstream> 
 #include <limits> 
