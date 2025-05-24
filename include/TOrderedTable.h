@@ -8,6 +8,7 @@
 #include <utility> 
 
 template<class TKey, class TValue>
+
 class TOrderedTable {
     std::vector<std::pair<TKey, TValue>> table;
 
