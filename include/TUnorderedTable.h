@@ -164,4 +164,23 @@ public:
         }
         return it.value();
     }
+
+    void print() const {
+        std::cout << "--- Неупорядоченная таблица (Размер: " << size() << ") ---\n";
+        if (table.empty()) {
+            std::cout << "Table is empty.\n";
+        }
+        else {
+            bool first = true;
+            for (const auto& pair : table) {
+                if (!first) {
+                    std::cout << ", ";
+                }
+                std::cout << "[" << pair.first << ": " << pair.second << "]";
+                first = false;
+            }
+            std::cout << "\n";
+        }
+        std::cout << "-------------------------------------------\n";
+    }
 };
