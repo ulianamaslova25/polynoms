@@ -194,6 +194,24 @@ private:
         }
     }
 
+    void printNode(Node* node, int level) const {
+        if (!node) {
+            // Optional: print indicators for null pointers if desired for debugging
+            // std::cout << std::string(level * 4, ' ') << "nullptr\n";
+            return;
+        }
+
+        // Print the right subtree first (will appear above the current node)
+        printNode(node->right, level + 1);
+
+        // Print the current node with indentation based on its level
+        std::cout << std::string(level * 4, ' '); // 4 spaces per level for indentation
+        std::cout << "[" << node->key << ":" << node->value << "] (h=" << node->height << ", bf=" << balanceFactor(node) << ")\n";
+
+        // Print the left subtree (will appear below the current node)
+        printNode(node->left, level + 1);
+    }
+
     class iterator;
     class const_iterator;
 
@@ -248,6 +266,18 @@ public:
     bool empty() const { return root == nullptr; }
 
     size_t size() const { return tree_size; }
+
+    void print() const {
+        std::cout << "--- AVL Tree (Size: " << size() << ", Height: " << height(root) << ") ---\n";
+        if (empty()) {
+            std::cout << "Tree is empty.\n";
+        }
+        else {
+            // Start recursive printing from the root at level 0
+            printNode(root, 0);
+        }
+        std::cout << "---------------------------------------------\n";
+    }
 
     class iterator {
         Node* current;
