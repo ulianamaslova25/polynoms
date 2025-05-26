@@ -14,9 +14,9 @@ set(MP2_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_subdirectory(include)
 
-if(BUILD_SAMPLES)
-	add_subdirectory(samples)
-endif()
+
+add_subdirectory(samples)
+
 
 if(BUILD_TESTING)
     add_subdirectory(gtest)
