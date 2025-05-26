@@ -6,6 +6,8 @@
 #include "TAVLTree.h"
 #include "TRB-Tree.h"
 #include "ChainHashTable.h"
+#include "HashTableOpenAddressing.h"
+
 #include <polynomial.h>
 #include "Parser.h"
 #include "transl.h"
@@ -472,7 +474,7 @@ void main()
     if (table_choice == 6) {
         std::cout << "Используется Хэш-таблица с открытой адресацией." << std::endl;
         std::cout << std::endl;
-        TOrderedTable<char, Polynomial> table;
+        HashTableOpenAddressing<char, Polynomial> table;
         int command = 0;
         while (command != 5) {
             std::cout << "Выберите действие:" << std::endl;
@@ -529,13 +531,13 @@ void main()
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << std::endl;
                 std::cout << "Ключ: '" << k << "'" << std::endl;
-                auto it = table.find(k);
-                if (it != table.end()) {
+                Polynomial* found_polynomial_ptr = table.find(k);
+                if (found_polynomial_ptr != nullptr) {
                     std::cout << "Текущее значение для ключа '" << k << "': ";
-                    std::cout << it->second << std::endl;
-                }
+                    std::cout << *found_polynomial_ptr << std::endl;
+                }   
                 else {
-                    std::cerr << "Ошибка: Не удалось найти только что вставленный полином по ключу '" << k << "'." << std::endl;
+                    std::cerr << "Ошибка: Элемент с ключом '" << k << "' не найден после вставки." << std::endl;
                 }
             }
             if (command == 3) {
