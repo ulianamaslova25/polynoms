@@ -262,4 +262,17 @@ public:
         table.assign(this->capacity, Slot());
         current_size = 0;
     }
+
+    void print() const {
+        std::cout << "Содержимое хеш-таблицы (Размер: " << current_size << "):" << std::endl;
+        if (empty()) {
+            std::cout << "  (пусто)" << std::endl;
+            return;
+        }
+        for (size_t i = 0; i < capacity; ++i) {
+            if (table[i].state == SlotState::OCCUPIED) {
+                std::cout << "  " << table[i].data.first << " - " << table[i].data.second << std::endl;
+            }
+        }
+    }
 };
